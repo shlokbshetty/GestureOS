@@ -1,101 +1,101 @@
-Indian Sign Language Recognition System
+# Gesture Control Desktop Application
 
-Overview
+> A comprehensive gesture recognition and control system for hands-free human-computer interaction
 
-This repository contains a comprehensive gesture recognition and control system designed to enable hands-free human-computer interaction through Indian Sign Language (ISL) recognition. The project has evolved from a legacy CNN-based gesture classification model to a modular, production-ready architecture with backend services, desktop applications, and web interfaces.
+## Overview
 
-Project Evolution
+This repository contains a modular, production-ready gesture recognition system that enables users to control their desktop through hand gestures captured via webcam. The project has evolved from a legacy CNN-based gesture classification model to a scalable architecture with backend services, desktop applications, and web interfaces.
 
-Legacy Architecture
+---
 
-The original implementation was a simple identification and classification model built with a 2D Convolutional Neural Network (CNN). This model was trained to recognize nine distinct static hand gestures and execute corresponding system-level actions such as scrolling, switching applications, adjusting volume, controlling media, and taking screenshots. The legacy system achieved 100% accuracy on the test set using YCrCb color-space segmentation and morphological filtering for hand detection.
+## Project Evolution
 
-The legacy CNN model and its associated research are documented in the AIML-Research-Paper.pdf file included in this repository. This paper represents the previous phase of the project and details the original gesture-recognition architecture, not the current implementation.
+### Legacy Architecture
 
-Current Architecture
+The original implementation was a simple identification and classification model built with a 2D Convolutional Neural Network (CNN). This model was trained to recognize nine distinct static hand gestures and execute corresponding system-level actions:
 
-The system has undergone significant structural evolution to support scalability, modularity, and enhanced functionality. The current implementation includes:
+- Scrolling
+- Switching applications
+- Adjusting volume
+- Controlling media playback
+- Taking screenshots
 
-Backend Services: A modular Python backend with gesture recognition engine, state management, and controller logic for executing system commands.
+The legacy system achieved **100% accuracy** on the test set using YCrCb color-space segmentation and morphological filtering for hand detection.
 
-Desktop Application: A cross-platform desktop interface for real-time gesture recognition and system control.
+**Research Documentation:** The legacy CNN model and its associated research are documented in `AIML-Research-Paper.pdf`. This paper represents the previous phase of the project and details the original gesture-recognition architecture, not the current implementation.
 
-Frontend Web Interface: A web-based dashboard for monitoring and configuration.
+### Current Architecture
 
-Gesture Registry: Centralized management of gesture definitions and mappings.
+The system has undergone significant structural evolution to support scalability, modularity, and enhanced functionality:
 
-Logging and Configuration: Comprehensive logging infrastructure and environment-based configuration management.
+- **Backend Services** - Modular Python backend with gesture recognition engine, state management, and controller logic
+- **Desktop Application** - Cross-platform interface for real-time gesture recognition and system control
+- **Frontend Web Interface** - Web-based dashboard for monitoring and configuration
+- **Gesture Registry** - Centralized management of gesture definitions and mappings
+- **Logging & Configuration** - Comprehensive logging infrastructure and environment-based configuration
 
-Current Implementation Status
+---
 
-Fully Operational Modules
+## Current Implementation Status
 
-Backend Core
+### Fully Operational Modules
 
-controller.py: Orchestrates gesture recognition workflows and command execution.
+#### Backend Core
+| Module | Purpose |
+|--------|---------|
+| `controller.py` | Orchestrates gesture recognition workflows and command execution |
+| `engine.py` | Core gesture recognition engine with real-time processing |
+| `gesture_registry.py` | Centralized registry for gesture definitions and mappings |
+| `state_manager.py` | Manages application state and gesture recognition context |
 
-engine.py: Core gesture recognition engine with real-time processing capabilities.
+#### Backend Utilities
+| Module | Purpose |
+|--------|---------|
+| `config.py` | Environment-based configuration management |
+| `logger.py` | Structured logging system with multiple output handlers |
 
-gesture_registry.py: Centralized registry for gesture definitions and system action mappings.
+#### Testing Infrastructure
+Comprehensive test suites covering all backend modules:
+- `test_controller.py` - Controller logic validation
+- `test_engine.py` - Engine functionality and accuracy tests
+- `test_gesture_registry.py` - Registry operations and gesture mapping tests
+- `test_state_manager.py` - State management and context handling tests
+- Utility tests for configuration and logging systems
 
-state_manager.py: Manages application state and gesture recognition context.
+#### Legacy Components
+- `legacy-cnn-model/` - Original CNN-based gesture recognition model with dataset and training scripts
 
-Backend Utilities
+---
 
-config.py: Environment-based configuration management.
+## Pending Tasks & In-Progress Work
 
-logger.py: Structured logging system with multiple output handlers.
+- Desktop Application Enhancement - Expanding interface capabilities for improved UX
+- Frontend Web Dashboard - Web-based monitoring and configuration interface
+- Multi-Gesture Support - Dynamic gesture sequence recognition
+- Cross-Platform Optimization - Windows, macOS, and Linux support
+- Performance Optimization - Reduced latency and improved real-time processing
 
-Testing Infrastructure
+---
 
-Comprehensive test suites for all backend modules:
+## Documentation
 
-test_controller.py: Controller logic validation.
+### Research Paper
 
-test_engine.py: Engine functionality and accuracy tests.
+A detailed research paper documenting the legacy CNN gesture-recognition architecture is available as `AIML-Research-Paper.pdf`. This paper includes:
 
-test_gesture_registry.py: Registry operations and gesture mapping tests.
+- Literature survey on gesture recognition and human-computer interaction
+- Methodology for CNN model design and training
+- Dataset creation and preprocessing techniques
+- Experimental results and performance metrics
+- Future research directions
 
-test_state_manager.py: State management and context handling tests.
+**Note:** This paper represents the previous phase of the project and documents the legacy CNN model, not the current modular architecture.
 
-Utility Tests: Configuration and logging system tests.
+---
 
-Legacy Components
+## Project Structure
 
-legacy-cnn-model/: Original CNN-based gesture recognition model with dataset and training scripts. This folder contains the foundational work that informed the current system architecture.
-
-Pending Tasks and In-Progress Work
-
-Desktop Application Enhancement: Expanding desktop interface capabilities for improved user experience and accessibility.
-
-Frontend Web Dashboard: Developing web-based monitoring and configuration interface.
-
-Multi-Gesture Support: Extending system to recognize dynamic gesture sequences beyond static gestures.
-
-Cross-Platform Optimization: Ensuring consistent performance across Windows, macOS, and Linux environments.
-
-Performance Optimization: Reducing inference latency and improving real-time processing efficiency.
-
-Documentation
-
-Research Paper
-
-A detailed research paper documenting the legacy CNN gesture-recognition architecture is available as AIML-Research-Paper.pdf. This paper includes:
-
-Literature survey on gesture recognition and human-computer interaction.
-
-Methodology for CNN model design and training.
-
-Dataset creation and preprocessing techniques.
-
-Experimental results and performance metrics.
-
-Future research directions.
-
-Note: This paper represents the previous phase of the project and documents the legacy CNN model, not the current modular architecture.
-
-Project Structure
-
+```
 .
 ├── backend/                          # Backend services and core logic
 │   ├── controller.py                 # Gesture workflow orchestration
@@ -122,82 +122,107 @@ Project Structure
 ├── config.json                       # Configuration file
 ├── requirements.txt                  # Python dependencies
 └── AIML-Research-Paper.pdf           # Legacy architecture research paper
+```
 
-Getting Started
+---
 
-Prerequisites
+## Getting Started
 
-Python 3.10 or higher
-pip package manager
-Virtual environment (recommended)
+### Prerequisites
 
-Installation
+- Python 3.10 or higher
+- pip package manager
+- Virtual environment (recommended)
 
-Clone the repository:
+### Installation
 
-git clone https://github.com/yourusername/Indiansignlanguage.git
-cd Indiansignlanguage
+**1. Clone the repository:**
+```bash
+git clone https://github.com/yourusername/gesture-control.git
+cd gesture-control
+```
 
-Create and activate virtual environment:
-
+**2. Create and activate virtual environment:**
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-Install dependencies:
-
+**3. Install dependencies:**
+```bash
 pip install -r requirements.txt
+```
 
-Configuration
+### Configuration
 
-Copy .env.example to .env and configure environment variables:
-
+Copy `.env.example` to `.env` and configure environment variables:
+```bash
 cp .env .env
+```
 
-Update config.json with system-specific settings.
+Update `config.json` with system-specific settings.
 
-Running the System
+---
 
-Backend Services:
+## Running the System
 
+### Backend Services
+```bash
 python -m backend.controller
+```
 
-Desktop Application:
-
+### Desktop Application
+```bash
 python -m desktop.app
+```
 
-Web Interface:
-
+### Web Interface
+```bash
 python -m frontend.app
+```
 
-Testing
+---
 
-Run all tests:
+## Testing
 
+### Run all tests
+```bash
 pytest
+```
 
-Run specific test suite:
-
+### Run specific test suite
+```bash
 pytest backend/test_engine.py -v
+```
 
-Contributing
+---
+
+## Contributing
 
 Contributions are welcome. Please follow these guidelines:
 
-Create a feature branch for new work.
-Write tests for new functionality.
-Ensure all tests pass before submitting a pull request.
-Follow PEP 8 style guidelines.
+1. Create a feature branch for new work
+2. Write tests for new functionality
+3. Ensure all tests pass before submitting a pull request
+4. Follow PEP 8 style guidelines
 
-License
+---
+
+## License
 
 This project is licensed under the MIT License. See LICENSE file for details.
 
-Acknowledgments
+---
 
-Research Team: Shashank Tandan, Shlok Shetty, Shree Santosh Yadav, Siddharth S Gadekar
-Institution: School of Computer Science and Engineering, RV University, Bengaluru
+## Acknowledgments
 
-Contact
+**Research Team:** Shashank Tandan, Shlok Shetty, Shree Santosh Yadav, Siddharth S Gadekar
+
+**Institution:** School of Computer Science and Engineering, RV University, Bengaluru
+
+---
+
+## Contact
 
 For questions or support, please open an issue on the repository or contact the development team.
 
