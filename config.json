@@ -1,0 +1,131 @@
+{
+  "application": {
+    "name": "Gesture Control Desktop",
+    "version": "1.0.0",
+    "debug": false
+  },
+  "camera": {
+    "device_id": 0,
+    "fps": 30,
+    "resolution": {
+      "width": 640,
+      "height": 480
+    }
+  },
+  "gesture_recognition": {
+    "confidence_threshold": 0.70,
+    "smoothing_frames": 20,
+    "default_cooldown_ms": 500
+  },
+  "logging": {
+    "level": "INFO",
+    "directory": "logs",
+    "file": "app.log",
+    "max_size_bytes": 10485760,
+    "backup_count": 5
+  },
+  "model": {
+    "path": "backend/models/cnn_model_keras.h5",
+    "input_size": 50,
+    "normalize_range": [0, 1]
+  },
+  "gestures": {
+    "app_switch": {
+      "action": "keyboard_shortcut",
+      "params": {
+        "keys": ["alt", "tab"]
+      },
+      "cooldown_ms": 500,
+      "enabled": true,
+      "display_name": "App Switch",
+      "icon": "app_switch.svg",
+      "description": "Switch between open applications"
+    },
+    "close_window": {
+      "action": "keyboard_shortcut",
+      "params": {
+        "keys": ["alt", "F4"]
+      },
+      "cooldown_ms": 500,
+      "enabled": true,
+      "display_name": "Close Window",
+      "icon": "close_window.svg",
+      "description": "Close current window"
+    },
+    "play_pause": {
+      "action": "keyboard_key",
+      "params": {
+        "key": "space"
+      },
+      "cooldown_ms": 300,
+      "enabled": true,
+      "display_name": "Play/Pause",
+      "icon": "play_pause.svg",
+      "description": "Play or pause media"
+    },
+    "volume_up": {
+      "action": "media_key",
+      "params": {
+        "key": "volume_up"
+      },
+      "cooldown_ms": 200,
+      "enabled": true,
+      "display_name": "Volume Up",
+      "icon": "volume_up.svg",
+      "description": "Increase volume"
+    },
+    "volume_down": {
+      "action": "media_key",
+      "params": {
+        "key": "volume_down"
+      },
+      "cooldown_ms": 200,
+      "enabled": true,
+      "display_name": "Volume Down",
+      "icon": "volume_down.svg",
+      "description": "Decrease volume"
+    },
+    "scroll_up": {
+      "action": "mouse_scroll",
+      "params": {
+        "units": 200
+      },
+      "cooldown_ms": 100,
+      "enabled": true,
+      "display_name": "Scroll Up",
+      "icon": "scroll_up.svg",
+      "description": "Scroll up"
+    },
+    "scroll_down": {
+      "action": "mouse_scroll",
+      "params": {
+        "units": -200
+      },
+      "cooldown_ms": 100,
+      "enabled": true,
+      "display_name": "Scroll Down",
+      "icon": "scroll_down.svg",
+      "description": "Scroll down"
+    },
+    "screenshot": {
+      "action": "keyboard_key",
+      "params": {
+        "key": "print"
+      },
+      "cooldown_ms": 1000,
+      "enabled": true,
+      "display_name": "Screenshot",
+      "icon": "screenshot.svg",
+      "description": "Take screenshot"
+    },
+    "nothing": {
+      "action": "none",
+      "params": {},
+      "cooldown_ms": 0,
+      "enabled": true,
+      "display_name": "No Gesture",
+      "icon": "nothing.svg",
+      "description": "No gesture detected"
+    }
+  }
+}
