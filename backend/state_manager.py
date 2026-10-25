@@ -269,9 +269,9 @@ class StateManager:
             
             # Get action from registry
             action_info = self.registry.get_action(gesture)
-            if not action_info:
+            if not action_info or gesture == 'nothing' or action_info.get('action') in ('none', '', None):
                 self.logger.debug(
-                    f"No action configured for gesture '{gesture}' or gesture disabled"
+                    f"No executable action for gesture '{gesture}' (action: {action_info.get('action') if action_info else None})"
                 )
                 return
             

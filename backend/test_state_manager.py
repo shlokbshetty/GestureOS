@@ -354,11 +354,12 @@ class TestActionLogging:
     def test_action_log_max_size(self):
         """Test that action log respects max size (1000 entries)."""
         self.manager.start()
+        # Set cooldown to 0 for testing log capacity
+        self.manager.registry.gestures['app_switch']['cooldown_ms'] = 0
         
         # Add more than 1000 actions
         for i in range(1100):
             self.manager.on_gesture_detected('app_switch', 0.95)
-            time.sleep(0.001)  # Small delay to avoid cooldown
         
         # Log should only contain last 1000
         assert len(self.manager.action_log) == 1000
@@ -520,6 +521,7 @@ class TestStatusReporting:
     def test_get_status(self):
         """Test getting comprehensive status."""
         self.manager.start()
+        time.sleep(0.005)
         
         status = self.manager.get_status()
         

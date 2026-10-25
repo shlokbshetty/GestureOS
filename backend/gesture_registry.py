@@ -7,6 +7,7 @@ Provides centralized registry for all supported gestures with metadata.
 Requirements: 2.1, 2.2, 2.7
 """
 
+import copy
 import json
 import os
 from typing import Dict, Optional
@@ -136,14 +137,14 @@ class GestureRegistry:
                 with open(self.config_path, 'r') as f:
                     config = json.load(f)
                     # Return gestures from config, or use defaults if not present
-                    return config.get('gestures', self.DEFAULT_GESTURES.copy())
+                    return config.get('gestures', copy.deepcopy(self.DEFAULT_GESTURES))
             else:
                 # File not found, use defaults
-                return self.DEFAULT_GESTURES.copy()
+                return copy.deepcopy(self.DEFAULT_GESTURES)
         except (json.JSONDecodeError, IOError) as e:
             # Error reading file, use defaults
             print(f"Warning: Could not load gesture config from {self.config_path}: {e}")
-            return self.DEFAULT_GESTURES.copy()
+            return copy.deepcopy(self.DEFAULT_GESTURES)
     
     def save_config(self) -> bool:
         """
@@ -270,7 +271,7 @@ class GestureRegistry:
         Returns:
             True if successful, False otherwise
         """
-        self.gestures = self.DEFAULT_GESTURES.copy()
+        self.gestures = copy.deepcopy(self.DEFAULT_GESTURES)
         return self.save_config()
     
     def validate_gesture(self, gesture_name: str) -> bool:
