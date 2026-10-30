@@ -6,8 +6,8 @@ Because GestureOS synthesizes operating system keyboard and mouse events (`pynpu
 
 | Version | Supported | Python Compatibility | Status |
 | :--- | :--- | :--- | :--- |
-| `1.0.x` | Yes | Python `3.10` – `3.12` | Active Production Release |
-| `< 1.0.0` | No | Legacy Python `3.8+` | Legacy Keras Prototype (Unsupported) |
+| `` | Yes | Python `3.10` – `3.12` | Active Production Release |
+
 
 ---
 
