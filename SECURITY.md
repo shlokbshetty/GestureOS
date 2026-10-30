@@ -24,7 +24,7 @@ Because GestureOS synthesizes operating system keyboard and mouse events (`pynpu
 If you discover a security vulnerability in GestureOS (such as arbitrary key injection, path traversal in configuration loading, or unauthorized cross-origin WebSocket hijacking):
 
 1. **Do NOT open a public GitHub issue.**
-2. Report the vulnerability privately via [GitHub Security Advisories](https://github.com/shlokbshetty/GestureOS/security/advisories/new) or by contacting the repository maintainer directly through GitHub (`@shlokbshetty`).
+2. Email **shettyshlok87@gmail.com** (or contact the repository maintainer via GitHub Private Vulnerability Reporting) with the subject `[SECURITY] GestureOS Vulnerability Report`.
 3. Include:
    - Affected component (`backend/api_server.py`, `backend/controller.py`, `backend/utils/config.py`, etc.)
    - Step-by-step proof-of-concept (PoC) reproduction instructions
