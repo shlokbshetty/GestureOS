@@ -1,231 +1,469 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="100%" height="100%" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" width="100%" height="100%" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b0f19"/>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080C16"/>
+      <stop offset="50%" stop-color="#0D1527"/>
+      <stop offset="100%" stop-color="#090E1A"/>
+    </linearGradient>
+
+    <!-- Subtle Dot Grid Pattern -->
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" opacity="0.3"/>
+    </pattern>
+
+    <!-- Card Background Gradients -->
+    <linearGradient id="cardGradDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#182235"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="cardGradElevated" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
       <stop offset="100%" stop-color="#111827"/>
     </linearGradient>
-    <linearGradient id="visionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#0369a1" stop-opacity="0.08"/>
+
+    <!-- Tier Container Gradients -->
+    <linearGradient id="tierGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0369A1" stop-opacity="0.04"/>
     </linearGradient>
-    <linearGradient id="mlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0.08"/>
+    <linearGradient id="tierGradIndigo" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.04"/>
     </linearGradient>
-    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#059669" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#047857" stop-opacity="0.08"/>
+    <linearGradient id="tierGradPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#6D28D9" stop-opacity="0.04"/>
     </linearGradient>
-    <linearGradient id="uiGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#d97706" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#b45309" stop-opacity="0.08"/>
+    <linearGradient id="tierGradEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#047857" stop-opacity="0.04"/>
     </linearGradient>
+    <linearGradient id="tierGradAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#B45309" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <!-- Ambient Glow Drops -->
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="40" result="blur"/>
+    </filter>
+    <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="50" result="blur"/>
+    </filter>
+    <filter id="glowEmerald" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="45" result="blur"/>
+    </filter>
+    <filter id="dropShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Arrow Markers -->
     <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
-    </marker>
-    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#a78bfa"/>
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8"/>
     </marker>
     <marker id="arrowEmerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34D399"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#A855F7"/>
     </marker>
     <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FBBF24"/>
+    </marker>
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FB7185"/>
     </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="780" rx="14" fill="url(#bgGrad)" stroke="#1f2937" stroke-width="2"/>
 
-  <!-- Header Banner -->
-  <text x="40" y="46" fill="#f8fafc" font-size="22" font-weight="700" letter-spacing="0.5">GestureOS — System Architecture &amp; Telemetry Data Flow</text>
-  <text x="40" y="70" fill="#94a3b8" font-size="13">Sub-millisecond ONNX computer vision inference pipeline, thread-safe state machine, FastAPI WebSocket gateway, and Windows virtual HID dispatcher</text>
-  <line x1="40" y1="86" x2="1160" y2="86" stroke="#1e293b" stroke-width="1.5"/>
+    <!-- Ambient Glow Highlights -->
+    <circle cx="150" cy="180" r="140" fill="#0284C7" opacity="0.08" filter="url(#glowCyan)"/>
+    <circle cx="680" cy="380" r="170" fill="#8B5CF6" opacity="0.07" filter="url(#glowPurple)"/>
+    <circle cx="1100" cy="580" r="150" fill="#10B981" opacity="0.06" filter="url(#glowEmerald)"/>
 
-  <!-- TIER 1: Optical Capture & Vision Pipeline -->
-  <rect x="40" y="106" width="265" height="530" rx="10" fill="url(#visionGrad)" stroke="#0284c7" stroke-width="1.5"/>
-  <text x="60" y="134" fill="#38bdf8" font-size="14" font-weight="700" letter-spacing="0.8">1. OPTICAL CAPTURE TIER</text>
-  <text x="60" y="152" fill="#94a3b8" font-size="11">Hardware Interface &amp; Preprocessing</text>
+    <!-- Canvas Frame -->
+    <rect width="1280" height="820" fill="url(#bgGradient)" rx="14"/>
+    <rect width="1280" height="820" fill="url(#dotGrid)" rx="14"/>
+    <rect x="6" y="6" width="1268" height="808" fill="none" stroke="#1E293B" stroke-width="1.5" rx="10"/>
 
-  <!-- USB Camera Node -->
-  <rect x="60" y="174" width="225" height="84" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
-  <text x="76" y="200" fill="#f1f5f9" font-size="13" font-weight="600">USB / Integrated Webcam</text>
-  <text x="76" y="220" fill="#94a3b8" font-size="11">OpenCV VideoCapture(0 / 1)</text>
-  <text x="76" y="238" fill="#38bdf8" font-size="11" font-family="monospace">640x480 BGR @ 30 FPS</text>
+    <!-- Main Header Banner -->
+    <g transform="translate(36, 26)">
+      <text x="0" y="18" fill="#F8FAFC" font-size="20" font-weight="800" letter-spacing="0.4">GestureOS &#8212; Real-Time Computer Vision &amp; Neural Gesture Control</text>
+      <text x="0" y="36" fill="#94A3B8" font-size="11.5">OpenCV Optical Capture + YCrCb Skin Detector | ONNX Runtime Opset 17 + 6-State FSM | FastAPI WebSocket &amp; Windows HID</text>
+      <!-- Badge Pill -->
+      <g transform="translate(1040, 2)">
+        <rect x="0" y="0" width="168" height="28" rx="14" fill="#0F172A" stroke="#38BDF8" stroke-width="1.2"/>
+        <circle cx="14" cy="14" r="3.5" fill="#22C55E"/>
+        <text x="25" y="17.5" fill="#38BDF8" font-size="10" font-weight="700" letter-spacing="0.6">v2.0 PRODUCTION</text>
+      </g>
+    </g>
 
-  <!-- SkinDetector Node -->
-  <rect x="60" y="294" width="225" height="110" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
-  <text x="76" y="320" fill="#f1f5f9" font-size="13" font-weight="600">SkinDetector (backend/engine.py)</text>
-  <text x="76" y="340" fill="#94a3b8" font-size="11">BGR -&gt; YCrCb Color Thresholding</text>
-  <text x="76" y="358" fill="#cbd5e1" font-size="11" font-family="monospace">Cr:[130,170] Cb:[77,127]</text>
-  <text x="76" y="376" fill="#94a3b8" font-size="11">5x5 Ellipse Morph Close &amp; Open</text>
-  <text x="76" y="392" fill="#38bdf8" font-size="11">Largest Contour ROI + 10px Pad</text>
-
-  <!-- TemporalSmoother Node -->
-  <rect x="60" y="440" width="225" height="106" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2"/>
-  <text x="76" y="466" fill="#f1f5f9" font-size="13" font-weight="600">Temporal Smoothing Engine</text>
-  <text x="76" y="486" fill="#94a3b8" font-size="11">Deque Ring Buffer (N=20 frames)</text>
-  <text x="76" y="504" fill="#94a3b8" font-size="11">Unanimous Consensus Check</text>
-  <text x="76" y="522" fill="#38bdf8" font-size="11" font-family="monospace">conf &gt;= 0.70 threshold</text>
-
-  <!-- Mock Engine Fallback -->
-  <rect x="60" y="566" width="225" height="52" rx="8" fill="#0f172a" stroke="#475569" stroke-dasharray="4 3" stroke-width="1.2"/>
-  <text x="76" y="590" fill="#cbd5e1" font-size="12" font-weight="600">MockGestureEngine (--mock)</text>
-  <text x="76" y="606" fill="#64748b" font-size="10">Hardware-free CI &amp; UI simulation</text>
-
-  <!-- TIER 2: AI Inference & Model Layer -->
-  <rect x="335" y="106" width="265" height="530" rx="10" fill="url(#mlGrad)" stroke="#7c3aed" stroke-width="1.5"/>
-  <text x="355" y="134" fill="#a78bfa" font-size="14" font-weight="700" letter-spacing="0.8">2. ML INFERENCE &amp; TRAINING</text>
-  <text x="355" y="152" fill="#94a3b8" font-size="11">ONNX Runtime &amp; Legacy CNN Pipeline</text>
-
-  <!-- OptimizedGestureModel -->
-  <rect x="355" y="174" width="225" height="125" rx="8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.2"/>
-  <text x="371" y="200" fill="#f1f5f9" font-size="13" font-weight="600">OptimizedGestureModel</text>
-  <text x="371" y="218" fill="#94a3b8" font-size="11">backend/models/model_runner.py</text>
-  <text x="371" y="238" fill="#a78bfa" font-size="11" font-family="monospace">Input: [1, 1, 50, 50] float32</text>
-  <text x="371" y="256" fill="#cbd5e1" font-size="11">ORT_ENABLE_ALL (CPUProvider)</text>
-  <text x="371" y="274" fill="#34d399" font-size="11" font-weight="600">Latency: ~0.19 ms / frame</text>
-
-  <!-- ONNX Graph & Exporter -->
-  <rect x="355" y="324" width="225" height="120" rx="8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.2"/>
-  <text x="371" y="350" fill="#f1f5f9" font-size="13" font-weight="600">ONNX Graph (Opset 17)</text>
-  <text x="371" y="368" fill="#94a3b8" font-size="11">gesture_model.onnx</text>
-  <text x="371" y="386" fill="#cbd5e1" font-size="10" font-family="monospace">Conv(16)-&gt;Pool-&gt;Conv(32)-&gt;Pool</text>
-  <text x="371" y="402" fill="#cbd5e1" font-size="10" font-family="monospace">Flatten(4608)-&gt;Gemm(64)-&gt;Softmax(9)</text>
-  <text x="371" y="422" fill="#a78bfa" font-size="11">9 Gesture Probability Logits</text>
-
-  <!-- Legacy Keras CNN & Dataset -->
-  <rect x="355" y="468" width="225" height="150" rx="8" fill="#0f172a" stroke="#64748b" stroke-dasharray="4 3" stroke-width="1.2"/>
-  <text x="371" y="494" fill="#f1f5f9" font-size="13" font-weight="600">Legacy CNN Training Pipeline</text>
-  <text x="371" y="512" fill="#94a3b8" font-size="11">legacy-cnn-model/cnn_model_train.py</text>
-  <text x="371" y="530" fill="#cbd5e1" font-size="11">3-Block Conv2D (32/64/128) + BN</text>
-  <text x="371" y="548" fill="#94a3b8" font-size="11">Keras Fallback: cnn_model_keras.h5</text>
-  <text x="371" y="566" fill="#94a3b8" font-size="11">Heuristic Fallback (Variance/Mean)</text>
-  <text x="371" y="586" fill="#a78bfa" font-size="10" font-family="monospace">export_model.py -&gt; .onnx</text>
-
-  <!-- TIER 3: State Orchestration & Persistence -->
-  <rect x="630" y="106" width="265" height="530" rx="10" fill="url(#coreGrad)" stroke="#059669" stroke-width="1.5"/>
-  <text x="650" y="134" fill="#34d399" font-size="14" font-weight="700" letter-spacing="0.8">3. CORE ORCHESTRATION</text>
-  <text x="650" y="152" fill="#94a3b8" font-size="11">Lifecycle, Cooldown &amp; Storage</text>
-
-  <!-- StateManager -->
-  <rect x="650" y="174" width="225" height="130" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.2"/>
-  <text x="666" y="200" fill="#f1f5f9" font-size="13" font-weight="600">StateManager (RLock)</text>
-  <text x="666" y="218" fill="#94a3b8" font-size="11">backend/state_manager.py</text>
-  <text x="666" y="236" fill="#34d399" font-size="10" font-family="monospace">STOPPED-&gt;STARTING-&gt;RUNNING</text>
-  <text x="666" y="252" fill="#34d399" font-size="10" font-family="monospace">PAUSING-&gt;PAUSED / STOPPING</text>
-  <text x="666" y="270" fill="#cbd5e1" font-size="11">Per-Gesture Cooldown Tracker</text>
-  <text x="666" y="288" fill="#94a3b8" font-size="11">Action Ring Buffer (maxlen=1000)</text>
-
-  <!-- GestureRegistry & ConfigManager -->
-  <rect x="650" y="324" width="225" height="115" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.2"/>
-  <text x="666" y="350" fill="#f1f5f9" font-size="13" font-weight="600">GestureRegistry &amp; Config</text>
-  <text x="666" y="368" fill="#94a3b8" font-size="11">config.json Persistence Store</text>
-  <text x="666" y="386" fill="#cbd5e1" font-size="11">9 Gesture Mappings &amp; Keybindings</text>
-  <text x="666" y="404" fill="#cbd5e1" font-size="11">Runtime Threshold &amp; Cooldown Sync</text>
-  <text x="666" y="422" fill="#34d399" font-size="10" font-family="monospace">RotatingFileHandler (logs/app.log)</text>
-
-  <!-- FastAPI Gateway -->
-  <rect x="650" y="460" width="225" height="158" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.2"/>
-  <text x="666" y="486" fill="#f1f5f9" font-size="13" font-weight="600">FastAPI &amp; WebSocket Server</text>
-  <text x="666" y="504" fill="#94a3b8" font-size="11">backend/api_server.py (Port 5000)</text>
-  <text x="666" y="524" fill="#cbd5e1" font-size="10" font-family="monospace">GET /api/status, /api/config</text>
-  <text x="666" y="540" fill="#cbd5e1" font-size="10" font-family="monospace">POST /api/start|stop|pause|resume</text>
-  <text x="666" y="556" fill="#cbd5e1" font-size="10" font-family="monospace">PUT /api/gestures/{name}</text>
-  <text x="666" y="572" fill="#cbd5e1" font-size="10" font-family="monospace">GET|DELETE /api/logs, /camera-status</text>
-  <text x="666" y="592" fill="#34d399" font-size="11" font-weight="600">WS /ws Broadcast Hub</text>
-
-  <!-- TIER 4: Presentation & OS Automation -->
-  <rect x="925" y="106" width="235" height="530" rx="10" fill="url(#uiGrad)" stroke="#d97706" stroke-width="1.5"/>
-  <text x="945" y="134" fill="#fbbf24" font-size="14" font-weight="700" letter-spacing="0.8">4. CLIENT &amp; OS HID TIER</text>
-  <text x="945" y="152" fill="#94a3b8" font-size="11">OS Input &amp; React HUD</text>
-
-  <!-- WindowsController -->
-  <rect x="945" y="174" width="195" height="165" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.2"/>
-  <text x="961" y="200" fill="#f1f5f9" font-size="13" font-weight="600">WindowsController</text>
-  <text x="961" y="218" fill="#94a3b8" font-size="11">backend/controller.py</text>
-  <text x="961" y="238" fill="#cbd5e1" font-size="11">pynput Keyboard &amp; Mouse</text>
-  <text x="961" y="256" fill="#fbbf24" font-size="10" font-family="monospace">Alt+Tab | Alt+F4 | Space</text>
-  <text x="961" y="272" fill="#fbbf24" font-size="10" font-family="monospace">Volume Up/Down | PrtScn</text>
-  <text x="961" y="288" fill="#fbbf24" font-size="10" font-family="monospace">Scroll(+200 / -200 units)</text>
-  <text x="961" y="312" fill="#94a3b8" font-size="11">OS Virtual HID Events</text>
-
-  <!-- React Frontend Dashboard -->
-  <rect x="945" y="370" width="195" height="248" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.2"/>
-  <text x="961" y="396" fill="#f1f5f9" font-size="13" font-weight="600">React 19 + Vite HUD</text>
-  <text x="961" y="414" fill="#94a3b8" font-size="11">frontend/src (Port 3000)</text>
-  <text x="961" y="436" fill="#cbd5e1" font-size="11">- Header &amp; Latency Meter</text>
-  <text x="961" y="454" fill="#cbd5e1" font-size="11">- CameraHUD &amp; Reticle</text>
-  <text x="961" y="472" fill="#cbd5e1" font-size="11">- ControlPanel Lifecycle</text>
-  <text x="961" y="490" fill="#cbd5e1" font-size="11">- 9 GestureCards Toggles</text>
-  <text x="961" y="508" fill="#cbd5e1" font-size="11">- ConfigPanel Sliders</text>
-  <text x="961" y="526" fill="#cbd5e1" font-size="11">- ActionLogFeed Stream</text>
-  <text x="961" y="552" fill="#fbbf24" font-size="10" font-family="monospace">useWebSocket.ts (/ws)</text>
-  <text x="961" y="568" fill="#fbbf24" font-size="10" font-family="monospace">services/api.ts (/api/*)</text>
-
-  <!-- DATA FLOW ARROWS -->
-  <!-- Webcam -> SkinDetector -->
-  <line x1="172" y1="258" x2="172" y2="288" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowCyan)"/>
-  <text x="180" y="277" fill="#38bdf8" font-size="10">BGR Frame</text>
-
-  <!-- SkinDetector -> OptimizedGestureModel -->
-  <path d="M 285 348 L 320 348 L 320 236 L 349 236" fill="none" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowPurple)"/>
-  <text x="292" y="226" fill="#a78bfa" font-size="10">50x50 Gray ROI</text>
-
-  <!-- ONNX Graph -> OptimizedGestureModel -->
-  <line x1="467" y1="324" x2="467" y2="305" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowPurple)"/>
-
-  <!-- Legacy Exporter -> ONNX Graph -->
-  <line x1="467" y1="468" x2="467" y2="450" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 2" marker-end="url(#arrowPurple)"/>
-
-  <!-- OptimizedGestureModel -> TemporalSmoother -->
-  <path d="M 355 265 L 310 265 L 310 490 L 291 490" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowCyan)"/>
-  <text x="292" y="480" fill="#38bdf8" font-size="10">(class, conf)</text>
-
-  <!-- TemporalSmoother -> StateManager -->
-  <path d="M 285 510 L 612 510 L 612 235 L 644 235" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
-  <text x="515" y="502" fill="#34d399" font-size="10">gesture_detected</text>
-
-  <!-- StateManager <-> GestureRegistry -->
-  <line x1="762" y1="304" x2="762" y2="318" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
-  <text x="770" y="316" fill="#34d399" font-size="10">get_action()</text>
-
-  <!-- StateManager -> WindowsController -->
-  <line x1="875" y1="235" x2="939" y2="235" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrowAmber)"/>
-  <text x="880" y="225" fill="#fbbf24" font-size="10">execute()</text>
-
-  <!-- StateManager <-> FastAPI -->
-  <line x1="762" y1="439" x2="762" y2="454" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
-
-  <!-- FastAPI <-> React Frontend -->
-  <line x1="875" y1="530" x2="939" y2="530" stroke="#fbbf24" stroke-width="2.2" marker-end="url(#arrowAmber)"/>
-  <line x1="939" y1="550" x2="875" y2="550" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
-  <text x="882" y="522" fill="#fbbf24" font-size="10">WS Push</text>
-  <text x="882" y="566" fill="#34d399" font-size="10">REST /api</text>
-
-  <!-- LEGEND FOOTER -->
-  <rect x="40" y="656" width="1120" height="96" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
-  <text x="60" y="682" fill="#f8fafc" font-size="13" font-weight="700">VISUAL LEGEND &amp; ARCHITECTURAL BOUNDARIES</text>
-
-  <!-- Legend Items -->
-  <rect x="60" y="700" width="16" height="16" rx="3" fill="#0284c7" fill-opacity="0.4" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="84" y="713" fill="#cbd5e1" font-size="12">Optical Capture &amp; CV Preprocessing (30 FPS)</text>
-
-  <rect x="350" y="700" width="16" height="16" rx="3" fill="#7c3aed" fill-opacity="0.4" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="374" y="713" fill="#cbd5e1" font-size="12">ONNX Runtime Inference (&lt;0.2ms) &amp; CNN Models</text>
-
-  <rect x="660" y="700" width="16" height="16" rx="3" fill="#059669" fill-opacity="0.4" stroke="#34d399" stroke-width="1.5"/>
-  <text x="684" y="713" fill="#cbd5e1" font-size="12">State Machine, Config Persistence &amp; FastAPI</text>
-
-  <rect x="945" y="700" width="16" height="16" rx="3" fill="#d97706" fill-opacity="0.4" stroke="#fbbf24" stroke-width="1.5"/>
-  <text x="969" y="713" fill="#cbd5e1" font-size="12">React 19 HUD &amp; Virtual HID</text>
-
-  <line x1="60" y1="734" x2="95" y2="734" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)"/>
-  <text x="105" y="738" fill="#94a3b8" font-size="11">Synchronous / Callback Event Flow</text>
-
-  <line x1="350" y1="734" x2="385" y2="734" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrowAmber)"/>
-  <text x="395" y="738" fill="#94a3b8" font-size="11">Bidirectional WebSocket (`/ws`) &amp; Virtual HID Dispatch</text>
-
-  <rect x="720" y="726" width="24" height="14" rx="2" fill="#0f172a" stroke="#64748b" stroke-dasharray="3 2" stroke-width="1.2"/>
-  <text x="752" y="738" fill="#94a3b8" font-size="11">Offline Training / Mock Fallback Subsystem</text>
+    <!-- Tier: TIER 1 &#183; OPTICAL CAPTURE &amp; VISION PREPROCESSING -->
+    <rect x="36" y="76" width="1208" height="154" rx="12" fill="url(#tierGradCyan)" stroke="#0284C7" stroke-opacity="0.35" stroke-width="1.2"/>
+    <rect x="52" y="86" width="335.59999999999997" height="18" rx="9" fill="#0F172A" stroke="#0284C7" stroke-width="1"/>
+    <text x="60" y="98.5" fill="#0284C7" font-size="10" font-weight="700" letter-spacing="0.8">TIER 1 &#183; OPTICAL CAPTURE &amp; VISION PREPROCESSING</text>
+    <text x="1228" y="98.5" fill="#64748B" font-size="10" font-weight="600" text-anchor="end">OPENCV / 60 FPS QUEUE</text>
+    <!-- Tier: TIER 2 &#183; NEURAL INFERENCE &amp; HEURISTIC FALLBACK -->
+    <rect x="36" y="250" width="1208" height="154" rx="12" fill="url(#tierGradIndigo)" stroke="#6366F1" stroke-opacity="0.35" stroke-width="1.2"/>
+    <rect x="52" y="260" width="328.8" height="18" rx="9" fill="#0F172A" stroke="#6366F1" stroke-width="1"/>
+    <text x="60" y="272.5" fill="#6366F1" font-size="10" font-weight="700" letter-spacing="0.8">TIER 2 &#183; NEURAL INFERENCE &amp; HEURISTIC FALLBACK</text>
+    <text x="1228" y="272.5" fill="#64748B" font-size="10" font-weight="600" text-anchor="end">ONNX RUNTIME OPSET 17</text>
+    <!-- Tier: TIER 3 &#183; FINITE STATE MACHINE &amp; TELEMETRY HUB -->
+    <rect x="36" y="424" width="1208" height="154" rx="12" fill="url(#tierGradEmerald)" stroke="#10B981" stroke-opacity="0.35" stroke-width="1.2"/>
+    <rect x="52" y="434" width="322.0" height="18" rx="9" fill="#0F172A" stroke="#10B981" stroke-width="1"/>
+    <text x="60" y="446.5" fill="#10B981" font-size="10" font-weight="700" letter-spacing="0.8">TIER 3 &#183; FINITE STATE MACHINE &amp; TELEMETRY HUB</text>
+    <text x="1228" y="446.5" fill="#64748B" font-size="10" font-weight="600" text-anchor="end">FASTAPI / WS STREAM</text>
+    <!-- Tier: TIER 4 &#183; OS HARDWARE INJECTION &amp; HUD CONSOLE -->
+    <rect x="36" y="598" width="1208" height="154" rx="12" fill="url(#tierGradAmber)" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1.2"/>
+    <rect x="52" y="608" width="315.2" height="18" rx="9" fill="#0F172A" stroke="#F59E0B" stroke-width="1"/>
+    <text x="60" y="620.5" fill="#F59E0B" font-size="10" font-weight="700" letter-spacing="0.8">TIER 4 &#183; OS HARDWARE INJECTION &amp; HUD CONSOLE</text>
+    <text x="1228" y="620.5" fill="#64748B" font-size="10" font-weight="600" text-anchor="end">WINDOWS HID / PYNPUT</text>
+    <!-- Node Card: OpenCV Video Capture -->
+    <g filter="url(#dropShadow)">
+      <rect x="52" y="108" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 54 108 L 426 108" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="64" y="120" width="28" height="28" rx="6" fill="#0B132B" stroke="#38BDF8" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(68, 124)">
+        <g transform="translate(0, 0)">
+          <path d="M 2 10 C 4.5 5.5 15.5 5.5 18 10 C 15.5 14.5 4.5 14.5 2 10 Z" fill="none" stroke="#38BDF8" stroke-width="1.6"/>
+          <circle cx="10" cy="10" r="3" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+          <circle cx="10" cy="10" r="1.2" fill="#38BDF8"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="100" y="132" fill="#F8FAFC" font-size="12.5" font-weight="700">OpenCV Video Capture</text>
+      <rect x="100" y="137" width="146.4" height="14" rx="3" fill="#1E293B"/>
+      <text x="105" y="147.5" fill="#38BDF8" font-size="9" font-weight="600" letter-spacing="0.3">VISION &#183; 60 FPS CAMERA</text>
+      
+      <circle cx="68" cy="159" r="2" fill="#38BDF8"/>
+      <text x="77" y="162" fill="#CBD5E1" font-size="10.5">Camera frame buffer queue &amp; resolution clamp</text>
+      <circle cx="68" cy="177" r="2" fill="#38BDF8"/>
+      <text x="77" y="180" fill="#CBD5E1" font-size="10.5">Exposure, white balance &amp; lighting calibration</text>
+      <circle cx="68" cy="195" r="2" fill="#38BDF8"/>
+      <text x="77" y="198" fill="#CBD5E1" font-size="10.5">Low-latency threading with frame-dropping guard</text>
+    </g>
+    <!-- Node Card: Skin Detection Pipeline -->
+    <g filter="url(#dropShadow)">
+      <rect x="452" y="108" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 454 108 L 826 108" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="464" y="120" width="28" height="28" rx="6" fill="#0B132B" stroke="#38BDF8" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(468, 124)">
+        <g transform="translate(0, 0)">
+          <path d="M 2 10 C 4.5 5.5 15.5 5.5 18 10 C 15.5 14.5 4.5 14.5 2 10 Z" fill="none" stroke="#38BDF8" stroke-width="1.6"/>
+          <circle cx="10" cy="10" r="3" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+          <circle cx="10" cy="10" r="1.2" fill="#38BDF8"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="500" y="132" fill="#F8FAFC" font-size="12.5" font-weight="700">Skin Detection Pipeline</text>
+      <rect x="500" y="137" width="177.4" height="14" rx="3" fill="#1E293B"/>
+      <text x="505" y="147.5" fill="#38BDF8" font-size="9" font-weight="600" letter-spacing="0.3">PREPROCESSING &#183; YCRCB + HSV</text>
+      
+      <circle cx="468" cy="159" r="2" fill="#38BDF8"/>
+      <text x="477" y="162" fill="#CBD5E1" font-size="10.5">Dual-color space skin segmentation threshold</text>
+      <circle cx="468" cy="177" r="2" fill="#38BDF8"/>
+      <text x="477" y="180" fill="#CBD5E1" font-size="10.5">Morphological noise removal: opening &amp; closing</text>
+      <circle cx="468" cy="195" r="2" fill="#38BDF8"/>
+      <text x="477" y="198" fill="#CBD5E1" font-size="10.5">Largest connected hand component isolation</text>
+    </g>
+    <!-- Node Card: Contour &amp; ROI Extractor -->
+    <g filter="url(#dropShadow)">
+      <rect x="852" y="108" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 854 108 L 1226 108" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="864" y="120" width="28" height="28" rx="6" fill="#0B132B" stroke="#38BDF8" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(868, 124)">
+        <g transform="translate(0, 0)">
+          <path d="M 2 10 C 4.5 5.5 15.5 5.5 18 10 C 15.5 14.5 4.5 14.5 2 10 Z" fill="none" stroke="#38BDF8" stroke-width="1.6"/>
+          <circle cx="10" cy="10" r="3" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+          <circle cx="10" cy="10" r="1.2" fill="#38BDF8"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="900" y="132" fill="#F8FAFC" font-size="12.5" font-weight="700">Contour &amp; ROI Extractor</text>
+      <rect x="900" y="137" width="158.8" height="14" rx="3" fill="#1E293B"/>
+      <text x="905" y="147.5" fill="#38BDF8" font-size="9" font-weight="600" letter-spacing="0.3">PROCESSING &#183; TENSOR PREP</text>
+      
+      <circle cx="868" cy="159" r="2" fill="#38BDF8"/>
+      <text x="877" y="162" fill="#CBD5E1" font-size="10.5">Hand contour tracking &amp; bounding box extraction</text>
+      <circle cx="868" cy="177" r="2" fill="#38BDF8"/>
+      <text x="877" y="180" fill="#CBD5E1" font-size="10.5">Aspect ratio preservation &amp; center of mass</text>
+      <circle cx="868" cy="195" r="2" fill="#38BDF8"/>
+      <text x="877" y="198" fill="#CBD5E1" font-size="10.5">64x64 grayscale tensor normalization [0.0, 1.0]</text>
+    </g>
+    <!-- Node Card: Optimized ONNX Model -->
+    <g filter="url(#dropShadow)">
+      <rect x="52" y="282" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 54 282 L 426 282" stroke="#818CF8" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="64" y="294" width="28" height="28" rx="6" fill="#0B132B" stroke="#818CF8" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(68, 298)">
+        <g transform="translate(0, 0)">
+          <circle cx="10" cy="10" r="4.5" fill="none" stroke="#818CF8" stroke-width="1.6"/>
+          <path d="M 10 2 L 10 5.5 M 10 14.5 L 10 18 M 2 10 L 5.5 10 M 14.5 10 L 18 10" stroke="#818CF8" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="10" r="1.5" fill="#818CF8"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="100" y="306" fill="#F8FAFC" font-size="12.5" font-weight="700">Optimized ONNX Model</text>
+      <rect x="100" y="311" width="165.0" height="14" rx="3" fill="#1E293B"/>
+      <text x="105" y="321.5" fill="#818CF8" font-size="9" font-weight="600" letter-spacing="0.3">INFERENCE &#183; ONNX OPSET 17</text>
+      
+      <circle cx="68" cy="333" r="2" fill="#818CF8"/>
+      <text x="77" y="336" fill="#CBD5E1" font-size="10.5">Quantized CNN graph executing in under 12ms</text>
+      <circle cx="68" cy="351" r="2" fill="#818CF8"/>
+      <text x="77" y="354" fill="#CBD5E1" font-size="10.5">9 gesture classes: Pinch, Swipe, Open, Fist, etc.</text>
+      <circle cx="68" cy="369" r="2" fill="#818CF8"/>
+      <text x="77" y="372" fill="#CBD5E1" font-size="10.5">CPU execution provider optimized with AVX2</text>
+    </g>
+    <!-- Node Card: Legacy Keras CNN Fallback -->
+    <g filter="url(#dropShadow)">
+      <rect x="452" y="282" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 454 282 L 826 282" stroke="#818CF8" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="464" y="294" width="28" height="28" rx="6" fill="#0B132B" stroke="#818CF8" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(468, 298)">
+        <g transform="translate(0, 0)">
+          <circle cx="10" cy="10" r="4.5" fill="none" stroke="#818CF8" stroke-width="1.6"/>
+          <path d="M 10 2 L 10 5.5 M 10 14.5 L 10 18 M 2 10 L 5.5 10 M 14.5 10 L 18 10" stroke="#818CF8" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="10" r="1.5" fill="#818CF8"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="500" y="306" fill="#F8FAFC" font-size="12.5" font-weight="700">Legacy Keras CNN Fallback</text>
+      <rect x="500" y="311" width="158.8" height="14" rx="3" fill="#1E293B"/>
+      <text x="505" y="321.5" fill="#818CF8" font-size="9" font-weight="600" letter-spacing="0.3">INFERENCE &#183; KERAS RUNNER</text>
+      
+      <circle cx="468" cy="333" r="2" fill="#818CF8"/>
+      <text x="477" y="336" fill="#CBD5E1" font-size="10.5">TensorFlow model runner for legacy weights</text>
+      <circle cx="468" cy="351" r="2" fill="#818CF8"/>
+      <text x="477" y="354" fill="#CBD5E1" font-size="10.5">Softmax probability distribution output</text>
+      <circle cx="468" cy="369" r="2" fill="#818CF8"/>
+      <text x="477" y="372" fill="#CBD5E1" font-size="10.5">Secondary verification on ambiguous gestures</text>
+    </g>
+    <!-- Node Card: Convex Hull Fallback -->
+    <g filter="url(#dropShadow)">
+      <rect x="852" y="282" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 854 282 L 1226 282" stroke="#818CF8" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="864" y="294" width="28" height="28" rx="6" fill="#0B132B" stroke="#818CF8" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(868, 298)">
+        <g transform="translate(0, 0)">
+          <rect x="2" y="2" width="16" height="16" rx="2" fill="none" stroke="#818CF8" stroke-width="1.4"/>
+          <line x1="6" y1="14" x2="6" y2="10" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="10" y1="14" x2="10" y2="6" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+          <line x1="14" y1="14" x2="14" y2="8" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="900" y="306" fill="#F8FAFC" font-size="12.5" font-weight="700">Convex Hull Fallback</text>
+      <rect x="900" y="311" width="171.20000000000002" height="14" rx="3" fill="#1E293B"/>
+      <text x="905" y="321.5" fill="#818CF8" font-size="9" font-weight="600" letter-spacing="0.3">HEURISTIC &#183; GEOMETRIC RULE</text>
+      
+      <circle cx="868" cy="333" r="2" fill="#818CF8"/>
+      <text x="877" y="336" fill="#CBD5E1" font-size="10.5">Convexity defect analysis &amp; contour hull</text>
+      <circle cx="868" cy="351" r="2" fill="#818CF8"/>
+      <text x="877" y="354" fill="#CBD5E1" font-size="10.5">Finger count estimation via angle thresholds</text>
+      <circle cx="868" cy="369" r="2" fill="#818CF8"/>
+      <text x="877" y="372" fill="#CBD5E1" font-size="10.5">Rule-based gesture determination on low confidence</text>
+    </g>
+    <!-- Node Card: Thread-Safe State Machine -->
+    <g filter="url(#dropShadow)">
+      <rect x="52" y="456" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 54 456 L 426 456" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="64" y="468" width="28" height="28" rx="6" fill="#0B132B" stroke="#34D399" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(68, 472)">
+        <g transform="translate(0, 0)">
+          <path d="M 10 2 L 17 5 C 17 12 10 17 10 17 C 10 17 3 12 3 5 Z" fill="none" stroke="#34D399" stroke-width="1.6"/>
+          <polyline points="7,9.5 9,11.5 13,7.5" fill="none" stroke="#34D399" stroke-width="1.5" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="100" y="480" fill="#F8FAFC" font-size="12.5" font-weight="700">Thread-Safe State Machine</text>
+      <rect x="100" y="485" width="171.20000000000002" height="14" rx="3" fill="#1E293B"/>
+      <text x="105" y="495.5" fill="#34D399" font-size="9" font-weight="600" letter-spacing="0.3">COORDINATION &#183; 6-STATE FSM</text>
+      
+      <circle cx="68" cy="507" r="2" fill="#34D399"/>
+      <text x="77" y="510" fill="#CBD5E1" font-size="10.5">IDLE, TRACKING, GESTURE, ACTION, PAUSED, ERROR</text>
+      <circle cx="68" cy="525" r="2" fill="#34D399"/>
+      <text x="77" y="528" fill="#CBD5E1" font-size="10.5">RLock synchronization preventing race conditions</text>
+      <circle cx="68" cy="543" r="2" fill="#34D399"/>
+      <text x="77" y="546" fill="#CBD5E1" font-size="10.5">Gesture state change event dispatch to listeners</text>
+    </g>
+    <!-- Node Card: Gesture Registry &amp; Debounce -->
+    <g filter="url(#dropShadow)">
+      <rect x="452" y="456" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 454 456 L 826 456" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="464" y="468" width="28" height="28" rx="6" fill="#0B132B" stroke="#34D399" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(468, 472)">
+        <g transform="translate(0, 0)">
+          <rect x="2" y="2" width="16" height="16" rx="2" fill="none" stroke="#34D399" stroke-width="1.4"/>
+          <line x1="6" y1="14" x2="6" y2="10" stroke="#34D399" stroke-width="2" stroke-linecap="round"/>
+          <line x1="10" y1="14" x2="10" y2="6" stroke="#34D399" stroke-width="2" stroke-linecap="round"/>
+          <line x1="14" y1="14" x2="14" y2="8" stroke="#34D399" stroke-width="2" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="500" y="480" fill="#F8FAFC" font-size="12.5" font-weight="700">Gesture Registry &amp; Debounce</text>
+      <rect x="500" y="485" width="158.8" height="14" rx="3" fill="#1E293B"/>
+      <text x="505" y="495.5" fill="#34D399" font-size="9" font-weight="600" letter-spacing="0.3">FILTER &#183; COOLDOWN ENGINE</text>
+      
+      <circle cx="468" cy="507" r="2" fill="#34D399"/>
+      <text x="477" y="510" fill="#CBD5E1" font-size="10.5">Hold duration threshold before trigger validation</text>
+      <circle cx="468" cy="525" r="2" fill="#34D399"/>
+      <text x="477" y="528" fill="#CBD5E1" font-size="10.5">Repeat rate limiter preventing accidental bursts</text>
+      <circle cx="468" cy="543" r="2" fill="#34D399"/>
+      <text x="477" y="546" fill="#CBD5E1" font-size="10.5">False-positive cooldown filter &amp; jitter buffer</text>
+    </g>
+    <!-- Node Card: FastAPI WebSocket Hub -->
+    <g filter="url(#dropShadow)">
+      <rect x="852" y="456" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 854 456 L 1226 456" stroke="#34D399" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="864" y="468" width="28" height="28" rx="6" fill="#0B132B" stroke="#34D399" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(868, 472)">
+        <g transform="translate(0, 0)">
+          <rect x="2" y="3" width="16" height="5" rx="1.5" fill="none" stroke="#34D399" stroke-width="1.5"/>
+          <rect x="2" y="12" width="16" height="5" rx="1.5" fill="none" stroke="#34D399" stroke-width="1.5"/>
+          <circle cx="5" cy="5.5" r="1" fill="#34D399"/>
+          <circle cx="5" cy="14.5" r="1" fill="#34D399"/>
+          <line x1="13" y1="8" x2="13" y2="12" stroke="#34D399" stroke-width="1.4"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="900" y="480" fill="#F8FAFC" font-size="12.5" font-weight="700">FastAPI WebSocket Hub</text>
+      <rect x="900" y="485" width="152.6" height="14" rx="3" fill="#1E293B"/>
+      <text x="905" y="495.5" fill="#34D399" font-size="9" font-weight="600" letter-spacing="0.3">GATEWAY &#183; /WS TELEMETRY</text>
+      
+      <circle cx="868" cy="507" r="2" fill="#34D399"/>
+      <text x="877" y="510" fill="#CBD5E1" font-size="10.5">Real-time gesture telemetry event broadcast</text>
+      <circle cx="868" cy="525" r="2" fill="#34D399"/>
+      <text x="877" y="528" fill="#CBD5E1" font-size="10.5">Cross-thread asyncio bridge from camera loop</text>
+      <circle cx="868" cy="543" r="2" fill="#34D399"/>
+      <text x="877" y="546" fill="#CBD5E1" font-size="10.5">REST endpoints for runtime config &amp; calibration</text>
+    </g>
+    <!-- Node Card: Windows HID Controller -->
+    <g filter="url(#dropShadow)">
+      <rect x="52" y="630" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 54 630 L 426 630" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="64" y="642" width="28" height="28" rx="6" fill="#0B132B" stroke="#FBBF24" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(68, 646)">
+        <g transform="translate(0, 0)">
+          <rect x="4" y="1" width="12" height="18" rx="2.5" fill="none" stroke="#FBBF24" stroke-width="1.6"/>
+          <circle cx="10" cy="15.5" r="1" fill="#FBBF24"/>
+          <line x1="8" y1="3.5" x2="12" y2="3.5" stroke="#FBBF24" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="100" y="654" fill="#F8FAFC" font-size="12.5" font-weight="700">Windows HID Controller</text>
+      <rect x="100" y="659" width="140.20000000000002" height="14" rx="3" fill="#1E293B"/>
+      <text x="105" y="669.5" fill="#FBBF24" font-size="9" font-weight="600" letter-spacing="0.3">HARDWARE &#183; PYNPUT HID</text>
+      
+      <circle cx="68" cy="681" r="2" fill="#FBBF24"/>
+      <text x="77" y="684" fill="#CBD5E1" font-size="10.5">Virtual mouse move, click, drag &amp; scroll injection</text>
+      <circle cx="68" cy="699" r="2" fill="#FBBF24"/>
+      <text x="77" y="702" fill="#CBD5E1" font-size="10.5">Linear cursor interpolation for jitter-free tracking</text>
+      <circle cx="68" cy="717" r="2" fill="#FBBF24"/>
+      <text x="77" y="720" fill="#CBD5E1" font-size="10.5">Virtual keyboard shortcuts &amp; hotkey trigger</text>
+    </g>
+    <!-- Node Card: Media &amp; Volume Dispatcher -->
+    <g filter="url(#dropShadow)">
+      <rect x="452" y="630" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 454 630 L 826 630" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="464" y="642" width="28" height="28" rx="6" fill="#0B132B" stroke="#FBBF24" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(468, 646)">
+        <g transform="translate(0, 0)">
+          <rect x="4" y="1" width="12" height="18" rx="2.5" fill="none" stroke="#FBBF24" stroke-width="1.6"/>
+          <circle cx="10" cy="15.5" r="1" fill="#FBBF24"/>
+          <line x1="8" y1="3.5" x2="12" y2="3.5" stroke="#FBBF24" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="500" y="654" fill="#F8FAFC" font-size="12.5" font-weight="700">Media &amp; Volume Dispatcher</text>
+      <rect x="500" y="659" width="152.6" height="14" rx="3" fill="#1E293B"/>
+      <text x="505" y="669.5" fill="#FBBF24" font-size="9" font-weight="600" letter-spacing="0.3">SYSTEM &#183; CORE AUDIO API</text>
+      
+      <circle cx="468" cy="681" r="2" fill="#FBBF24"/>
+      <text x="477" y="684" fill="#CBD5E1" font-size="10.5">Windows Core Audio master volume control</text>
+      <circle cx="468" cy="699" r="2" fill="#FBBF24"/>
+      <text x="477" y="702" fill="#CBD5E1" font-size="10.5">Media keys: Play, Pause, Next, Previous</text>
+      <circle cx="468" cy="717" r="2" fill="#FBBF24"/>
+      <text x="477" y="720" fill="#CBD5E1" font-size="10.5">App switcher (Alt+Tab) window manipulation</text>
+    </g>
+    <!-- Node Card: React 19 Floating HUD -->
+    <g filter="url(#dropShadow)">
+      <rect x="852" y="630" width="376" height="108" rx="10" fill="url(#cardGradDark)" stroke="#1E293B" stroke-width="1.2"/>
+      <!-- Top Accent Bar -->
+      <path d="M 854 630 L 1226 630" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Icon Container -->
+      <rect x="864" y="642" width="28" height="28" rx="6" fill="#0B132B" stroke="#FBBF24" stroke-opacity="0.3" stroke-width="1"/>
+      <g transform="translate(868, 646)">
+        <g transform="translate(0, 0)">
+          <rect x="1" y="2" width="18" height="15" rx="3" fill="none" stroke="#FBBF24" stroke-width="1.6"/>
+          <line x1="1" y1="6" x2="19" y2="6" stroke="#FBBF24" stroke-width="1.4"/>
+          <circle cx="4" cy="4" r="0.9" fill="#FBBF24"/>
+          <circle cx="7" cy="4" r="0.9" fill="#FBBF24"/>
+        </g>
+      </g>
+      <!-- Title & Subtitle Badge -->
+      <text x="900" y="654" fill="#F8FAFC" font-size="12.5" font-weight="700">React 19 Floating HUD</text>
+      <rect x="900" y="659" width="140.20000000000002" height="14" rx="3" fill="#1E293B"/>
+      <text x="905" y="669.5" fill="#FBBF24" font-size="9" font-weight="600" letter-spacing="0.3">CLIENT &#183; VITE CONSOLE</text>
+      
+      <circle cx="868" cy="681" r="2" fill="#FBBF24"/>
+      <text x="877" y="684" fill="#CBD5E1" font-size="10.5">Semi-transparent floating desktop overlay</text>
+      <circle cx="868" cy="699" r="2" fill="#FBBF24"/>
+      <text x="877" y="702" fill="#CBD5E1" font-size="10.5">Live confidence bar, state pill &amp; FPS meter</text>
+      <circle cx="868" cy="717" r="2" fill="#FBBF24"/>
+      <text x="877" y="720" fill="#CBD5E1" font-size="10.5">Camera preview stream with contour overlay</text>
+    </g><path d="M 240 216 L 240 280" fill="none" stroke="#38BDF8" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+        <rect x="204.0" y="240.5" width="72.0" height="15" rx="4" fill="#090E1A" stroke="#38BDF8" stroke-width="0.9"/>
+        <text x="240" y="251.5" fill="#38BDF8" font-size="8.5" font-weight="600" text-anchor="middle">RAW FRAMES</text><path d="M 640 216 L 640 280" fill="none" stroke="#38BDF8" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+        <rect x="619.0" y="240.5" width="42.0" height="15" rx="4" fill="#090E1A" stroke="#38BDF8" stroke-width="0.9"/>
+        <text x="640" y="251.5" fill="#38BDF8" font-size="8.5" font-weight="600" text-anchor="middle">MASKS</text><path d="M 1040 216 L 1040 280" fill="none" stroke="#38BDF8" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+        <rect x="1001.0" y="240.5" width="78.0" height="15" rx="4" fill="#090E1A" stroke="#38BDF8" stroke-width="0.9"/>
+        <text x="1040" y="251.5" fill="#38BDF8" font-size="8.5" font-weight="600" text-anchor="middle">ROI TENSORS</text><path d="M 240 390 L 240 454" fill="none" stroke="#818CF8" stroke-width="1.8" marker-end="url(#arrowPurple)"/>
+        <rect x="201.0" y="414.5" width="78.0" height="15" rx="4" fill="#090E1A" stroke="#818CF8" stroke-width="0.9"/>
+        <text x="240" y="425.5" fill="#818CF8" font-size="8.5" font-weight="600" text-anchor="middle">PREDICTIONS</text><path d="M 640 390 L 640 454" fill="none" stroke="#818CF8" stroke-width="1.8" marker-end="url(#arrowPurple)"/>
+        <rect x="610.0" y="414.5" width="60.0" height="15" rx="4" fill="#090E1A" stroke="#818CF8" stroke-width="0.9"/>
+        <text x="640" y="425.5" fill="#818CF8" font-size="8.5" font-weight="600" text-anchor="middle">DEBOUNCE</text><path d="M 1040 390 L 1040 454" fill="none" stroke="#818CF8" stroke-width="1.8" marker-end="url(#arrowPurple)"/>
+        <rect x="1007.0" y="414.5" width="66.0" height="15" rx="4" fill="#090E1A" stroke="#818CF8" stroke-width="0.9"/>
+        <text x="1040" y="425.5" fill="#818CF8" font-size="8.5" font-weight="600" text-anchor="middle">WS EVENTS</text><path d="M 240 564 L 240 628" fill="none" stroke="#34D399" stroke-width="1.8" marker-end="url(#arrowEmerald)"/>
+        <rect x="195.0" y="588.5" width="90.0" height="15" rx="4" fill="#090E1A" stroke="#34D399" stroke-width="0.9"/>
+        <text x="240" y="599.5" fill="#34D399" font-size="8.5" font-weight="600" text-anchor="middle">HID INJECTION</text><path d="M 640 564 L 640 628" fill="none" stroke="#34D399" stroke-width="1.8" marker-end="url(#arrowEmerald)"/>
+        <rect x="607.0" y="588.5" width="66.0" height="15" rx="4" fill="#090E1A" stroke="#34D399" stroke-width="0.9"/>
+        <text x="640" y="599.5" fill="#34D399" font-size="8.5" font-weight="600" text-anchor="middle">AUDIO API</text><path d="M 1040 564 L 1040 628" fill="none" stroke="#34D399" stroke-width="1.8" marker-end="url(#arrowEmerald)"/>
+        <rect x="1004.0" y="588.5" width="72.0" height="15" rx="4" fill="#090E1A" stroke="#34D399" stroke-width="0.9"/>
+        <text x="1040" y="599.5" fill="#34D399" font-size="8.5" font-weight="600" text-anchor="middle">HUD RENDER</text>
+    <!-- System Architecture Legend -->
+    <rect x="36" y="766" width="1208" height="36" rx="8" fill="#0B132B" stroke="#1E293B" stroke-width="1"/>
+    <text x="52" y="787.5" fill="#F8FAFC" font-size="10" font-weight="700" letter-spacing="0.5">FLOW SIGNALS:</text>
+    
+      <circle cx="156" cy="784.0" r="3.5" fill="#38BDF8"/>
+      <text x="165" y="787.5" fill="#94A3B8" font-size="9.5" font-weight="500">Optical Capture &amp; ROI</text>
+      <circle cx="324.5" cy="784.0" r="3.5" fill="#818CF8"/>
+      <text x="333.5" y="787.5" fill="#94A3B8" font-size="9.5" font-weight="500">ONNX / CNN Inference</text>
+      <circle cx="486.5" cy="784.0" r="3.5" fill="#34D399"/>
+      <text x="495.5" y="787.5" fill="#94A3B8" font-size="9.5" font-weight="500">FSM &amp; WebSocket Hub</text>
+      <circle cx="642.0" cy="784.0" r="3.5" fill="#FBBF24"/>
+      <text x="651.0" y="787.5" fill="#94A3B8" font-size="9.5" font-weight="500">Windows HID &amp; HUD</text>
 </svg>
