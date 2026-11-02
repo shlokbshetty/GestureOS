@@ -15,7 +15,44 @@
 
 ## High-Level System Architecture
 
-![GestureOS System Architecture](docs/assets/system-overview.svg)
+```mermaid
+flowchart TD
+    subgraph ClientTier ["1. Desktop UI & Video Overlay (Electron / Web)"]
+        DesktopApp["Electron & React UI Layer<br/>(HUD Calibration, Gesture Mapping & Settings)"]
+        CameraFeed["OpenCV Webcam Capture<br/>(60 FPS Low-Latency RGB Video Stream)"]
+        VisualFeedback["Real-Time Canvas Overlay<br/>(21 Hand Landmark Skeleton & Tracking Mesh)"]
+    end
+
+    subgraph EngineTier ["2. Computer Vision & Landmark Extraction"]
+        MediaPipePipeline["MediaPipe Hands Pipeline<br/>(Static & Dynamic 3D Coordinates X, Y, Z)"]
+        CoordinateNormalizer["Coordinate Smoother & Kalman Filter<br/>(Jitter Reduction & Screen Scale Normalization)"]
+        GestureRecognizer["Rule-Based & ML Gesture Classifier<br/>(Pinch, Swipe, Palm Drag, Fist, Peace Sign)"]
+    end
+
+    subgraph ControllerTier ["3. Core IPC & OS System Control Daemon"]
+        WebSocketServer["FastAPI / WebSocket IPC Server<br/>(Telemetry Dispatch & Event Streaming)"]
+        ActionDispatcher["Action Mapping Dispatcher<br/>(Configurable JSON Key & Gesture Bindings)"]
+        SystemController["OS Virtual Input Daemon<br/>(PyAutoGUI / Direct OS Mouse & Key Event Injection)"]
+    end
+
+    subgraph PersistenceTier ["4. Configuration & User Profiles"]
+        ConfigStorage[("Local JSON Configuration<br/>(profiles.json, gestures.json, calibration.json)")]
+        LogManager["Rotating File Logger<br/>(logs/gestureos.log Debug & Diagnostic Tracing)"]
+    end
+
+    DesktopApp --> CameraFeed
+    CameraFeed --> MediaPipePipeline
+    MediaPipePipeline --> VisualFeedback
+    MediaPipePipeline --> CoordinateNormalizer
+
+    CoordinateNormalizer --> GestureRecognizer
+    GestureRecognizer --> WebSocketServer
+    WebSocketServer --> ActionDispatcher
+
+    ActionDispatcher --> SystemController
+    ActionDispatcher --> ConfigStorage
+    ActionDispatcher --> LogManager
+```
 
 GestureOS is architected around four decoupled tiers:
 1. **Optical Capture & Vision Preprocessing (`backend/engine.py`)**: Captures `640x480` BGR frames at `30 FPS` via OpenCV, isolates the hand Region of Interest (ROI) in `YCrCb` color space (`Cr: 130-170`, `Cb: 77-127`) with `5x5` elliptical morphological filtering, and extracts a padded `50x50` grayscale crop.
