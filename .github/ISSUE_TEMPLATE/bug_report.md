@@ -37,8 +37,10 @@ assignees: ""
 ## Logs & Screenshots
 
 <!-- Paste relevant lines from `logs/app.log` or terminal output below: -->
+
 ```text
 Paste logs/app.log output or stack trace here
+
 ```
 
 ## Environment Information

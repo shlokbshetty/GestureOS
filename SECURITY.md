@@ -8,7 +8,6 @@ Because GestureOS synthesizes operating system keyboard and mouse events (`pynpu
 | :--- | :--- | :--- | :--- |
 | `` | Yes | Python `3.10` – `3.12` | Active Production Release |
 
-
 ---
 
 ## 2. Security Model & Deployment Boundaries

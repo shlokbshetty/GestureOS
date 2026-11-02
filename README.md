@@ -1,13 +1,13 @@
 # GestureOS: AI-Powered Gesture Control Desktop Platform
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/shlokbshetty/GestureOS)
-[![Tests](https://img.shields.io/badge/Tests-200%2F200_Passing-success?style=for-the-badge&logo=pytest&logoColor=white)](pytest.ini)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-0.19ms_Latency-005CED?style=for-the-badge&logo=onnx&logoColor=white)](https://onnxruntime.ai/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen — style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/shlokbshetty/GestureOS)
+[![Tests](https://img.shields.io/badge/Tests-200%2F200_Passing-success — style=for-the-badge&logo=pytest&logoColor=white)](pytest.ini)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue — style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB — style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104%2B-009688 — style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-0.19ms_Latency-005CED — style=for-the-badge&logo=onnx&logoColor=white)](https://onnxruntime.ai/)
+[![React](https://img.shields.io/badge/React-19-61DAFB — style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6 — style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 **GestureOS** is a low-latency computer vision desktop platform that transforms standard webcam video streams into hands-free operating system automation. Powered by an OpenCV YCrCb skin-segmentation pipeline, a sub-millisecond ONNX Runtime Convolutional Neural Network (`<0.2 ms` inference time per frame), a thread-safe application lifecycle state machine, a FastAPI REST and WebSocket telemetry server, and a glassmorphic React 19 + TypeScript HUD dashboard, GestureOS dispatches virtual keyboard, media, and mouse scroll events on Windows with configurable multi-frame temporal smoothing and per-gesture cooldown protection.
 
@@ -55,24 +55,30 @@ For an exhaustive breakdown of component boundaries, state machine transitions, 
 ## Step-by-Step Local Setup
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/shlokbshetty/GestureOS.git
 cd GestureOS
+
 ```
 
 ### 2. Configure the Python Virtual Environment
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install --upgrade pip
 pip install -r requirements.txt
+
 ```
 
 ### 3. Install Frontend Dependencies
+
 ```powershell
 cd frontend
 npm install
 cd ..
+
 ```
 
 ---
@@ -80,63 +86,91 @@ cd ..
 ## Build, Training, Inference & Execution Commands
 
 ### Unified One-Command Product Launch
+
 The root `run.py` orchestrator starts the FastAPI backend (`127.0.0.1:5000`), polls `/api/status` until healthy, launches the Vite dev server (`localhost:3000`), and opens your default browser:
+
 ```powershell
+
 # Standard launch with live webcam + ONNX inference + React dashboard
+
 python run.py
 
 # Hardware-free mock engine mode (for CI, headless servers, or UI testing)
+
 python run.py --mock
 
 # Launch only the FastAPI backend on a custom port
+
 python run.py --backend-only --port 5000
 
 # Launch only the React frontend dashboard
+
 python run.py --frontend-only --frontend-port 3000
 
 # Launch full stack without auto-opening the browser
+
 python run.py --no-browser
+
 ```
 
 ### Direct Backend Service Execution
+
 ```powershell
 python -m backend.main --host 127.0.0.1 --port 5000 --config config.json --model backend/models/gesture_model.onnx
+
 ```
 
 ### Exporting & Benchmarking the ONNX Model
+
 ```powershell
+
 # Deterministically build and verify backend/models/gesture_model.onnx (Opset 17)
+
 python -m backend.models.export_model
 
 # Benchmark ONNX Runtime inference latency over 100 iterations
+
 python -c "from backend.models.model_runner import OptimizedGestureModel; m = OptimizedGestureModel('backend/models/gesture_model.onnx'); print(f'Avg latency: {m.benchmark(100):.3f} ms')"
+
 ```
 
 ### Legacy CNN Dataset Capture & Model Training
+
 To record custom gesture datasets and train a Keras `.h5` model from scratch:
+
 ```powershell
 cd legacy-cnn-model
 python create_gestures.py
 python load_images.py
 python cnn_model_train.py
 cd ..
+
 ```
 
 ### Frontend Production Build & Linting
+
 ```powershell
 cd frontend
 npm run lint      # Runs oxlint static analysis
+
 npm run build     # Runs tsc -b && vite build -> outputs to frontend/dist/
+
 npm run preview   # Previews production bundle locally
+
 ```
 
 ### Running the Test Suite
+
 ```powershell
+
 # Run all 200 unit and integration tests
+
 pytest
 
 # Run with coverage report
+
 pytest --cov=backend --cov-report=term-missing
+
 ```
 
 ---

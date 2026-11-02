@@ -17,6 +17,7 @@ assignees: ""
 ## API / Configuration Impact (If Applicable)
 
 <!-- Show any proposed additions to `config.json`, REST endpoints (`/api/*`), or WebSocket (`/ws`) payloads: -->
+
 ```json
 {
   "gestures": {
@@ -28,6 +29,7 @@ assignees: ""
     }
   }
 }
+
 ```
 
 ## Alternative Approaches Considered

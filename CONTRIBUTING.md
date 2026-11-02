@@ -27,9 +27,11 @@ We enforce the [Conventional Commits v1.0.0](https://www.conventionalcommits.org
 [optional body explaining the "why" and architectural trade-offs]
 
 [optional footer(s): Closes #123, BREAKING CHANGE: ...]
+
 ```
 
 ### Supported Scopes
+
 - `engine`: `backend/engine.py` (`SkinDetector`, `GestureEngine`)
 - `models`: `backend/models/` (`OptimizedGestureModel`, `export_model.py`, `gesture_model.onnx`)
 - `controller`: `backend/controller.py` (`WindowsController`)
@@ -41,6 +43,7 @@ We enforce the [Conventional Commits v1.0.0](https://www.conventionalcommits.org
 - `launcher`: `run.py` or `backend/main.py`
 
 ### Examples
+
 - `feat(models): add DirectML execution provider fallback to OptimizedGestureModel`
 - `fix(state): release RLock while awaiting in-flight action completion on stop()`
 - `docs(api): document PUT /api/gestures/{gesture_name} 404 error payload`
@@ -64,19 +67,24 @@ We enforce the [Conventional Commits v1.0.0](https://www.conventionalcommits.org
 Before submitting a Pull Request, run the following commands from the repository root and verify zero failures:
 
 ```powershell
+
 # 1. Run the complete 200-test pytest suite
+
 pytest
 
 # 2. Verify Python formatting and lint rules
+
 black --check backend/ run.py
 flake8 backend/ run.py --max-line-length=100
 mypy backend/ run.py --ignore-missing-imports
 
 # 3. Verify Frontend linting and TypeScript compilation
+
 cd frontend
 npm run lint
 npm run build
 cd ..
+
 ```
 
 ---

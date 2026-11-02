@@ -23,13 +23,18 @@ The structured logging system provides centralized, production-grade logging for
 ### Log Format
 
 ```
+
 YYYY-MM-DD HH:MM:SS - COMPONENT_NAME - LEVEL - message
+
 ```
 
 Example:
+
 ```
+
 2026-05-23 18:37:57 - gesture_engine - INFO - Gesture detected: app_switch
 2026-05-23 18:37:57 - controller - ERROR - Failed to execute action: Alt+Tab
+
 ```
 
 ## Usage
@@ -40,13 +45,16 @@ Example:
 from backend.utils import get_logger
 
 # Get a logger for your component
+
 logger = get_logger('my_component')
 
 # Log messages at different levels
+
 logger.debug('Debug information')
 logger.info('Informational message')
 logger.warning('Warning message')
 logger.error('Error message')
+
 ```
 
 ### Application Startup
@@ -55,7 +63,9 @@ logger.error('Error message')
 from backend.utils import initialize_logging
 
 # Call once at application startup
+
 initialize_logging()
+
 ```
 
 ### Application Shutdown
@@ -64,7 +74,9 @@ initialize_logging()
 from backend.utils import shutdown_logging
 
 # Call during graceful shutdown
+
 shutdown_logging()
+
 ```
 
 ### Complete Example
@@ -75,10 +87,10 @@ from backend.utils import get_logger, initialize_logging, shutdown_logging
 def main():
     # Initialize logging
     initialize_logging()
-    
+
     # Get logger for this module
     logger = get_logger('main')
-    
+
     try:
         logger.info('Application started')
         # Your application code here
@@ -91,6 +103,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 ```
 
 ## Component Loggers
@@ -98,17 +111,23 @@ if __name__ == '__main__':
 Each component should get its own logger with a descriptive name:
 
 ```python
+
 # In gesture_engine.py
+
 logger = get_logger('gesture_engine')
 
 # In controller.py
+
 logger = get_logger('controller')
 
 # In state_manager.py
+
 logger = get_logger('state_manager')
 
 # In api_server.py
+
 logger = get_logger('api_server')
+
 ```
 
 ## Log Levels
@@ -147,11 +166,13 @@ def worker(thread_id):
     logger.info(f'Thread {thread_id} completed')
 
 # Safe to log from multiple threads
+
 threads = [threading.Thread(target=worker, args=(i,)) for i in range(5)]
 for thread in threads:
     thread.start()
 for thread in threads:
     thread.join()
+
 ```
 
 ## Testing
@@ -160,6 +181,7 @@ Run the test suite to verify the logging system:
 
 ```bash
 python -m unittest backend.utils.test_logger -v
+
 ```
 
 Tests verify:
@@ -207,7 +229,9 @@ The logger handles Unicode characters. If you see encoding errors:
 The logger should be initialized early in the application startup:
 
 ```python
+
 # main.py
+
 from backend.utils import initialize_logging, shutdown_logging
 import signal
 
@@ -218,9 +242,10 @@ def signal_handler(sig, frame):
 if __name__ == '__main__':
     initialize_logging()
     signal.signal(signal.SIGINT, signal_handler)
-    
+
     # Start application
     app.run()
+
 ```
 
 ## Future Enhancements

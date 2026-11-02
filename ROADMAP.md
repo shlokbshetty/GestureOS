@@ -5,6 +5,7 @@ This roadmap outlines the short-term engineering milestones, medium-term feature
 ---
 
 ## Phase 1: Core Vision, ONNX Runtime & Web HUD (Completed — `v1.0.0`)
+
 - [x] `YCrCb` chrominance skin segmentation (`SkinDetector`) with `5x5` elliptical morphological filtering.
 - [x] Sub-millisecond ONNX Runtime inference engine (`OptimizedGestureModel`, `~0.19 ms` latency) with Keras `.h5` and heuristic fallbacks.
 - [x] Thread-safe `StateManager` lifecycle FSM (`stopped`, `starting`, `running`, `pausing`, `paused`, `stopping`) and per-gesture `CooldownTracker`.
@@ -15,6 +16,7 @@ This roadmap outlines the short-term engineering milestones, medium-term feature
 ---
 
 ## Phase 2: Short-Term Milestones (`v1.1.0` — Q1)
+
 - [ ] **Live Annotated MJPEG / WebRTC Camera Stream in HUD**:
   - Stream optional downsampled ROI preview and bounding-box overlays to `CameraHUD.tsx` so users can visually calibrate hand placement in real time.
 - [ ] **Adaptive Skin Calibration Wizard**:
@@ -27,6 +29,7 @@ This roadmap outlines the short-term engineering milestones, medium-term feature
 ---
 
 ## Phase 3: Medium-Term Milestones (`v1.2.0` — Q2–Q3)
+
 - [ ] **21-Point Hand Landmark Hybrid Pipeline**:
   - Combine lightweight palm/landmark keypoint extraction with the `50x50` ROI CNN classifier to support dynamic trajectory gestures (e.g., pinch-to-zoom, 2D cursor tracking, swipe left/right).
 - [ ] **Application-Specific Gesture Profiles**:
@@ -37,6 +40,7 @@ This roadmap outlines the short-term engineering milestones, medium-term feature
 ---
 
 ## Phase 4: Long-Term Milestones (`v2.0.0` — Q4+)
+
 - [ ] **In-Dashboard Few-Shot Gesture Trainer**:
   - Allow users to record 50 frames of a new custom hand pose directly inside the React dashboard and fine-tune the final `Gemm(64 -> N)` classification head on-device.
 - [ ] **Cross-Platform Native Packaging (Tauri / Electron)**:

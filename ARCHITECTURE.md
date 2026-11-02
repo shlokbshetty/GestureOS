@@ -67,52 +67,94 @@ GestureOS is a real-time human-computer interaction (HCI) platform that translat
 ```text
 GestureOS/
 ├── backend/                          # Core Python backend package
+
 │   ├── __init__.py
 │   ├── main.py                       # GestureOSApplication orchestrator, CLI arg parser, & MockGestureEngine
+
 │   ├── engine.py                     # SkinDetector (YCrCb + morphology) & GestureEngine (30 FPS loop)
+
 │   ├── state_manager.py              # ApplicationState enum & StateManager lifecycle/cooldown coordinator
+
 │   ├── controller.py                 # WindowsController (pynput keyboard, media key, & mouse scroll dispatch)
+
 │   ├── gesture_registry.py           # GestureRegistry (9 default gestures, metadata, & JSON persistence)
+
 │   ├── api_server.py                 # APIServer (FastAPI routes, CORS, Pydantic models, & /ws hub)
+
 │   ├── models/                       # Neural network weights & inference wrappers
+
 │   │   ├── __init__.py
 │   │   ├── export_model.py           # Deterministic ONNX Opset 17 CNN graph builder
+
 │   │   ├── gesture_model.onnx        # Compiled ONNX model (1x1x50x50 -> 9 classes)
+
 │   │   └── model_runner.py           # OptimizedGestureModel (ONNX / Keras / Heuristic runner & benchmark)
+
 │   ├── utils/                        # Cross-cutting infrastructure utilities
+
 │   │   ├── __init__.py
 │   │   ├── config.py                 # ConfigManager (dot-notation getter/setter & schema validator)
+
 │   │   ├── debounce.py               # Debouncer & CooldownTracker (thread-safe refractory timers)
+
 │   │   ├── logger.py                 # StructuredLogger singleton (10MB RotatingFileHandler + console)
+
 │   │   ├── logger_example.py         # Runnable logging demonstration script
+
 │   │   └── smoothing.py              # TemporalSmoother (multi-frame unanimous ring buffer)
+
 │   └── test_*.py                     # Comprehensive pytest suite (200 passing unit & integration tests)
+
 ├── frontend/                         # React 19 + TypeScript 6 + Vite 8 Web Dashboard
+
 │   ├── index.html                    # Root HTML shell
+
 │   ├── package.json                  # Frontend dependencies & scripts (dev, build, lint, preview)
+
 │   ├── vite.config.ts                # Dev server on port 3000 with /api and /ws proxy to 127.0.0.1:5000
+
 │   └── src/
 │       ├── main.tsx                  # React DOM entry point
+
 │       ├── App.tsx                   # Dashboard layout & state synchronization
+
 │       ├── types.ts                  # Shared TypeScript interfaces (SystemStatus, CameraStatus, ConfigData)
+
 │       ├── hooks/useWebSocket.ts     # Auto-reconnecting WebSocket client hook (2.5s backoff)
+
 │       ├── services/api.ts           # Typed fetch wrappers for all REST endpoints
+
 │       └── components/               # Modular UI components (Header, CameraHUD, ControlPanel, GestureCards, ConfigPanel, ActionLogFeed)
+
 ├── legacy-cnn-model/                 # Offline dataset capture & Keras CNN training suite
+
 │   ├── create_gestures.py            # Webcam ROI recorder for building custom gesture datasets
+
 │   ├── load_images.py                # Dataset splitter (train/val/test pickles + label_map.pkl)
+
 │   ├── cnn_model_train.py            # 3-block Conv2D + BatchNorm + Dropout training & confusion matrix plotter
+
 │   ├── display_gestures.py           # Dataset grid visualizer
+
 │   └── final.py                      # Standalone legacy OpenCV + Keras desktop script
+
 ├── docs/                             # Extended documentation & architectural diagrams
+
 │   ├── ARCHITECTURE.md               # Detailed system architecture guide
+
 │   ├── API.md                        # Complete REST, WebSocket, and Python API reference
+
 │   └── assets/
 │       └── system-overview.svg       # Vector architecture & data flow diagram
+
 ├── config.json                       # Runtime application & gesture mapping configuration
+
 ├── pytest.ini                        # Pytest path and discovery configuration
+
 ├── requirements.txt                  # Python package dependencies
+
 └── run.py                            # Unified cross-process launcher (Backend + Healthcheck + Frontend + Browser)
+
 ```
 
 ---
@@ -120,6 +162,7 @@ GestureOS/
 ## 6. Component Breakdown
 
 ### 6.1 `SkinDetector` & `GestureEngine` (`backend/engine.py`)
+
 - **`SkinDetector`**:
   - Converts incoming `BGR` frames to `YCrCb` (`cv2.cvtColor(frame, cv2.COLOR_BGR2YCrCb)`). Luminance (`Y`) is separated from chrominance (`Cr`, `Cb`), making segmentation resilient to ambient lighting changes.
   - Applies `cv2.inRange` with `lower_skin = [0, 130, 77]` and `upper_skin = [255, 170, 127]`.
@@ -131,6 +174,7 @@ GestureOS/
   - Passes the cropped grayscale ROI to `OptimizedGestureModel.predict()`, discards predictions below `self.confidence_threshold` (`0.70`), and feeds valid predictions into `_apply_temporal_smoothing()`.
 
 ### 6.2 `OptimizedGestureModel` & `export_model.py` (`backend/models/`)
+
 - **Graph Architecture (`backend/models/export_model.py`)**:
   - Input Tensor: `input` of shape `[1, 1, 50, 50]` (`FLOAT`, normalized `[0, 1]`).
   - **Block 1**: `Conv` (`16` filters, `3x3`, `pads=[1,1,1,1]`) -> `Relu` -> `MaxPool` (`2x2`, stride `2`) -> output `[1, 16, 25, 25]`.
@@ -139,6 +183,7 @@ GestureOS/
   - Output Tensor: `output` of shape `[1, 9]` corresponding to `['app_switch', 'close_window', 'nothing', 'play_pause', 'screenshot', 'scroll_down', 'scroll_up', 'volume_down', 'volume_up']`.
 
 ### 6.3 `StateManager` (`backend/state_manager.py`)
+
 - Coordinates the interaction between `GestureEngine`, `GestureRegistry`, and `WindowsController`.
 - When `on_gesture_detected(gesture, confidence)` is invoked:
   1. Verifies `self.state == ApplicationState.RUNNING`.
@@ -149,6 +194,7 @@ GestureOS/
 - During `stop()`, waits up to `5 seconds` for any in-flight action (executed within the last `1 second`) to settle before releasing the camera hardware.
 
 ### 6.4 `WindowsController` (`backend/controller.py`)
+
 - Wraps `pynput.keyboard.Controller` and `pynput.mouse.Controller` with an `RLock`.
 - Supports multi-key chords (`_keyboard_shortcut` presses keys sequentially with a `50 ms` delay and releases them in reverse order), single keys (`_keyboard_key`), hardware media keys (`_media_key`), and vertical mouse wheel scrolling (`_mouse_scroll`).
 
@@ -157,6 +203,7 @@ GestureOS/
 ## 7. End-to-End Data Flow Patterns
 
 ### Flow A: Real-Time Gesture Recognition & OS Action Execution
+
 1. **Frame Capture**: `GestureEngine._process_loop()` reads a `640x480` BGR frame from the webcam every `33.3 ms`.
 2. **Skin Segmentation**: `SkinDetector.detect(frame)` isolates the hand contour in `YCrCb` space and returns a `50x50` grayscale hand crop.
 3. **CNN Inference**: `OptimizedGestureModel.predict(hand_region)` normalizes pixel values to `[0.0, 1.0]` (`float32`), executes the ONNX graph in `~0.19 ms`, and returns `(gesture_name, confidence)`.
@@ -165,6 +212,7 @@ GestureOS/
 6. **Telemetry Push**: Both `gesture_detected` and `action_executed` events are forwarded to `APIServer.broadcast_event()`, which serializes the JSON packet and pushes it over `/ws` to all connected React dashboard clients.
 
 ### Flow B: Live Configuration Mutation from Dashboard
+
 1. The user adjusts the **Confidence Threshold** slider, **Temporal Smoothing** slider, or a **Gesture Card** toggle in the React UI (`ConfigPanel.tsx` / `GestureCards.tsx`).
 2. The frontend service (`frontend/src/services/api.ts`) sends `POST /api/config` or `PUT /api/gestures/{gesture_name}`.
 3. `APIServer` validates the payload via Pydantic (`ConfigUpdateRequest` / `GestureUpdateRequest`), updates `engine.confidence_threshold`, `engine.smoothing_frames`, and `registry.update_gesture()`, and persists the updated dictionary to `config.json`.
